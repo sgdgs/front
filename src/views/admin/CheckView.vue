@@ -39,19 +39,18 @@ const headers = [
   { title: '取消預約', value: 'action' }
 ]
 
-const getCheck = async (id) => {
+const getCheck = async () => {
   try {
-    const { data } = await apiAuth.get('/reserves')
+    const { data } = await apiAuth.get('/reservations')
     check.value = data
   } catch (error) {
-    console.log(error)
     createSnackbar({
       text: '取得預約紀錄失敗',
       showCloseButton: false,
       snackbarProps: {
         timeout: 2000,
         color: 'red',
-        location: 'bottom'
+        top: true
       }
     })
   }
@@ -59,7 +58,7 @@ const getCheck = async (id) => {
 
 const deleteCheck = async (id) => {
   try {
-    await apiAuth.delete('/reserves/' + id)
+    await apiAuth.delete(`/reservations/${id}`)
     check.value = check.value.filter(item => item._id !== id)
     createSnackbar({
       text: '刪除成功',

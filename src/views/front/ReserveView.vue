@@ -68,7 +68,7 @@ const serviceItem = ref(null)
 
 const submit = handleSubmit(async (values) => {
   try {
-    await api.post('/reservations', {
+    await api.post('/reserves', {
       name: values.name,
       phone: values.phone,
       date: values.date,
