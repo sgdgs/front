@@ -32,6 +32,7 @@ const createSnackbar = useSnackbar()
 
 const check = ref([])
 const headers = [
+  { title: '預約編號', value: '_id' },
   { title: '預約日期', value: 'date' },
   { title: '手機', value: 'phone' },
   { title: '姓名', value: 'name' },
@@ -39,9 +40,9 @@ const headers = [
   { title: '取消預約', value: 'action' }
 ]
 
-const getCheck = async (id) => {
+const getCheck = async () => {
   try {
-    const { data } = await apiAuth.get('/reserves')
+    const { data } = await apiAuth.get('/reservations')
     check.value = data
   } catch (error) {
     console.log(error)
@@ -59,7 +60,7 @@ const getCheck = async (id) => {
 
 const deleteCheck = async (id) => {
   try {
-    await apiAuth.delete('/reserves/' + id)
+    await apiAuth.delete(`/reservations/${id}`)
     check.value = check.value.filter(item => item._id !== id)
     createSnackbar({
       text: '刪除成功',
@@ -84,8 +85,5 @@ const deleteCheck = async (id) => {
   }
 }
 
-onMounted(() => {
-  getCheck()
-})
-
+onMounted(getCheck)
 </script>

@@ -57,7 +57,7 @@ const schema = yup.object({
 })
 
 const { handleSubmit, isSubmitting } = useForm({
-  validationSchema: schema, initialValues: { name: '', phone: '', date: new Date(), service: '' }
+  validationSchema: schema, initialValues: { name: '', phone: '', date: new Date(), service: '', user: localStorage.getItem('user') }
 })
 
 const name = useField('name')
@@ -68,10 +68,11 @@ const serviceItem = ref(null)
 
 const submit = handleSubmit(async (values) => {
   try {
-    await api.post('/reserves', {
+    await api.post('/reservations', {
+      user: values.user,
+      date: values.date,
       name: values.name,
       phone: values.phone,
-      date: values.date,
       service: serviceItem.value
     })
     createSnackbar({
@@ -85,9 +86,9 @@ const submit = handleSubmit(async (values) => {
     })
     router.push('/check')
   } catch (error) {
-    const text = error?.response?.data?.message || '發生錯誤，請稍後再試'
+    console.log(error)
     createSnackbar({
-      text,
+      text: '預約失敗',
       showCloseButton: false,
       snackbarProps: {
         timeout: 2000,
