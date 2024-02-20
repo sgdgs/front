@@ -32,7 +32,6 @@ const createSnackbar = useSnackbar()
 
 const check = ref([])
 const headers = [
-  { title: '預約編號', value: '_id' },
   { title: '預約日期', value: 'date' },
   { title: '手機', value: 'phone' },
   { title: '姓名', value: 'name' },
@@ -40,23 +39,23 @@ const headers = [
   { title: '取消預約', value: 'action' }
 ]
 
-const getCheck = async () => {
-  try {
-    const { data } = await apiAuth.get('/reservations')
-    check.value = data
-  } catch (error) {
-    console.log(error)
-    createSnackbar({
-      text: '取得預約紀錄失敗',
-      showCloseButton: false,
-      snackbarProps: {
-        timeout: 2000,
-        color: 'red',
-        location: 'bottom'
-      }
-    })
-  }
-}
+// const getCheck = async () => {
+//   try {
+//     const { data } = await apiAuth.get('/reservations')
+//     check.value = data
+//   } catch (error) {
+//     console.log(error)
+//     createSnackbar({
+//       text: '取得預約紀錄失敗',
+//       showCloseButton: false,
+//       snackbarProps: {
+//         timeout: 2000,
+//         color: 'red',
+//         location: 'bottom'
+//       }
+//     })
+//   }
+// }
 
 const deleteCheck = async (id) => {
   try {
@@ -85,5 +84,21 @@ const deleteCheck = async (id) => {
   }
 }
 
-onMounted(getCheck)
+onMounted(async (id) => {
+  try {
+    const { data } = await apiAuth.get(`/reservations/${id}`)
+    check.value = data
+  } catch (error) {
+    console.log(error)
+    createSnackbar({
+      text: '取得預約紀錄失敗',
+      showCloseButton: false,
+      snackbarProps: {
+        timeout: 2000,
+        color: 'red',
+        location: 'bottom'
+      }
+    })
+  }
+})
 </script>

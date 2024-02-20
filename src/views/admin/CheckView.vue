@@ -36,7 +36,7 @@ const headers = [
   { title: '手機', value: 'phone' },
   { title: '姓名', value: 'name' },
   { title: '服務項目', value: 'service' },
-  { title: '取消預約', value: 'action' }
+  { title: '刪除預約', value: 'action' }
 ]
 
 const getCheck = async () => {

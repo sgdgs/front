@@ -156,6 +156,26 @@ const routes = [
           login: true,
           admin: true
         }
+      },
+      {
+        path: 'check',
+        name: 'AdminCheck',
+        component: () => import('@/views/admin/CheckView.vue'),
+        meta: {
+          title: '剪單 | 預約管理',
+          login: true,
+          admin: true
+        }
+      },
+      {
+        path: 'picture',
+        name: 'AdminPicture',
+        component: () => import('@/views/admin/PicturesView.vue'),
+        meta: {
+          title: '剪單 | 圖片管理',
+          login: true,
+          admin: true
+        }
       }
     ]
   }

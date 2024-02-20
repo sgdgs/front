@@ -2,10 +2,10 @@
 VContainer
   VRow
     VCol(cols="12")
-      h1.text-center 商品管理
+      h1.text-center 圖片管理
     VDivider
     VCol(cols="12")
-      VBtn(color="green" @click="openDialog()") 新增商品
+      VBtn(color="green" @click="openDialog()") 新增圖片
     VCol(cols="12")
       VDataTableServer(
         v-model:items-per-page="tableItemsPerPage"
@@ -180,9 +180,9 @@ const submit = handleSubmit(async (values) => {
     }
 
     if (dialogId.value === '') {
-      await apiAuth.post('/products', fd)
+      await apiAuth.post('/pictures', fd)
     } else {
-      await apiAuth.patch('/products/' + dialogId.value, fd)
+      await apiAuth.patch('/pictures/' + dialogId.value, fd)
     }
 
     createSnackbar({
@@ -242,7 +242,7 @@ const tableSearch = ref('')
 const tableLoadItems = async () => {
   tableLoading.value = true
   try {
-    const { data } = await apiAuth.get('/products/all', {
+    const { data } = await apiAuth.get('/pictures/all', {
       params: {
         page: tablePage.value,
         itemsPerPage: tableItemsPerPage.value,
@@ -277,7 +277,7 @@ const tableApplySearch = () => {
 
 const deleteProduct = async (id) => {
   try {
-    await apiAuth.delete('/products/' + id)
+    await apiAuth.delete('/pictures/' + id)
     createSnackbar({
       text: '刪除成功',
       showCloseButton: false,

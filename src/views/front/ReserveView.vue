@@ -57,8 +57,9 @@ const schema = yup.object({
 })
 
 const { handleSubmit, isSubmitting } = useForm({
-  validationSchema: schema, initialValues: { name: '', phone: '', date: new Date(), service: '', user: localStorage.getItem('user') }
+  validationSchema: schema, initialValues: { name: '', phone: '', date: new Date(), service: '' }
 })
+
 
 const name = useField('name')
 const phone = useField('phone')
@@ -66,10 +67,11 @@ const date = useField('date')
 const items = ref(['洗髮', '剪髮', '燙髮', '染髮', '護髮', '燙染', '燙染護', '燙染護剪'])
 const serviceItem = ref(null)
 
+
+
 const submit = handleSubmit(async (values) => {
   try {
     await api.post('/reservations', {
-      user: values.user,
       date: values.date,
       name: values.name,
       phone: values.phone,
@@ -119,6 +121,8 @@ setInterval(() => {
 const formattedDate = computed(() => {
   return `${date.value.value.toLocaleDateString()}/ ${date.value.value.getHours()}:${date.value.value.getMinutes().toString().padStart(2, '0')}`
 })
+
+
 
 </script>
 
