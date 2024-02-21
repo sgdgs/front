@@ -36,7 +36,7 @@ import { useRouter } from 'vue-router'
 import { useSnackbar } from 'vuetify-use-dialog'
 import { useApi } from '@/composables/axios'
 
-const { api } = useApi()
+const { apiAuth } = useApi()
 
 const router = useRouter()
 const createSnackbar = useSnackbar()
@@ -57,9 +57,8 @@ const schema = yup.object({
 })
 
 const { handleSubmit, isSubmitting } = useForm({
-  validationSchema: schema, initialValues: { name: '', phone: '', date: new Date(), service: '' }
+  validationSchema: schema, initialValues: { name: '', phone: '', date: new Date(), service: '', user: '' }
 })
-
 
 const name = useField('name')
 const phone = useField('phone')
@@ -67,15 +66,14 @@ const date = useField('date')
 const items = ref(['洗髮', '剪髮', '燙髮', '染髮', '護髮', '燙染', '燙染護', '燙染護剪'])
 const serviceItem = ref(null)
 
-
-
 const submit = handleSubmit(async (values) => {
   try {
-    await api.post('/reservations', {
+    await apiAuth.post('/reserve/', {
       date: values.date,
       name: values.name,
       phone: values.phone,
-      service: serviceItem.value
+      service: serviceItem.value,
+      user: values.user
     })
     createSnackbar({
       text: '預約成功',
@@ -121,8 +119,6 @@ setInterval(() => {
 const formattedDate = computed(() => {
   return `${date.value.value.toLocaleDateString()}/ ${date.value.value.getHours()}:${date.value.value.getMinutes().toString().padStart(2, '0')}`
 })
-
-
 
 </script>
 

@@ -4,7 +4,7 @@
       <h1 style="text-align: center;">預約紀錄</h1>
     </VCol>
     <VCol cols="12">
-      <VDataTable :items="check" :headers="headers">
+      <VDataTable :items="check.result" :headers="headers">
         <template #[`item.date`]="{ item }">
           {{ new Date(item.date).toLocaleDateString() }} {{ new Date(item.date).getHours().toString().padStart(2, '0')
           }}:{{ new Date(item.date).getMinutes().toString().padStart(2, '0') }}
@@ -39,28 +39,10 @@ const headers = [
   { title: '取消預約', value: 'action' }
 ]
 
-// const getCheck = async () => {
-//   try {
-//     const { data } = await apiAuth.get('/reservations')
-//     check.value = data
-//   } catch (error) {
-//     console.log(error)
-//     createSnackbar({
-//       text: '取得預約紀錄失敗',
-//       showCloseButton: false,
-//       snackbarProps: {
-//         timeout: 2000,
-//         color: 'red',
-//         location: 'bottom'
-//       }
-//     })
-//   }
-// }
-
 const deleteCheck = async (id) => {
   try {
-    await apiAuth.delete(`/reservations/${id}`)
-    check.value = check.value.filter(item => item._id !== id)
+    await apiAuth.delete(`/reserve/${id}`)
+    check.value.result = check.value.result.filter((item) => item._id !== id)
     createSnackbar({
       text: '刪除成功',
       showCloseButton: false,
@@ -84,10 +66,10 @@ const deleteCheck = async (id) => {
   }
 }
 
-onMounted(async (id) => {
+onMounted(async () => {
   try {
-    const { data } = await apiAuth.get(`/reservations/${id}`)
-    check.value = data
+    const { data } = await apiAuth.get('/reserve/me')
+    check.value.result = data.result
   } catch (error) {
     console.log(error)
     createSnackbar({

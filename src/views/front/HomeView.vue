@@ -3,7 +3,7 @@
     <VRow>
       <VCol cols="12">
         <h1 style="text-align: center; margin: 10px;">---作品分享---</h1>
-        <swiper :effect="'coverflow'" :autoplay="{ delay: 2500, disableOnInteraction: false, }" :centeredSlides="true"
+        <swiper :effect="'coverflow'" :autoplay="{ delay: 5000, disableOnInteraction: false, }" :centeredSlides="true"
           :slidesPerView="3" :coverflowEffect="{
             rotate: 60,
             stretch: 0,
