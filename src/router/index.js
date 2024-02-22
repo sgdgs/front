@@ -108,6 +108,16 @@ const routes = [
         }
       },
       {
+        path: 'serve',
+        name: 'Serve',
+        component: () => import('@/views/front/ServeView.vue'),
+        meta: {
+          title: '剪單 | 服務',
+          login: false,
+          admin: false
+        }
+      },
+      {
         path: '/404',
         name: 'NotFound',
         component: () => import('@/views/front/NotFoundView.vue'),

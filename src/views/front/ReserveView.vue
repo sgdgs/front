@@ -1,6 +1,6 @@
 <template>
-  <h1 style="text-align: center;">預約日期</h1>
   <VContainer>
+    <h1 style="text-align: center;">預約日期</h1>
     <VRow>
       <VCol cols="12" sm="6">
         <DatePicker style="width: 80%; margin-left: 10%;" v-model="date.value.value" mode="dateTime" :rules="rules"
@@ -123,3 +123,5 @@ const formattedDate = computed(() => {
 </script>
 
 <!-- 尚未修正當禮拜一時，是可以選取狀態 -->
+
+<style scoped></style>

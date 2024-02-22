@@ -96,6 +96,7 @@ const updatePassword = async () => {
     await apiAuth.patch('/users/password', {
       password: user.password,
       newPassword: user.newPassword
+
     })
     createSnackbar({
       text: '修改成功',
@@ -106,6 +107,9 @@ const updatePassword = async () => {
         location: 'bottom'
       }
     })
+    user.password = ''
+    user.newPassword = ''
+    user.confirmPassword = ''
     user.logout()
     router.push('/login')
   } catch (error) {

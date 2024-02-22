@@ -14,20 +14,14 @@ VNavigationDrawer(v-model="drawer" temporary location="left" v-if="isMobile")
         VIcon(icon="mdi-logout")
       VListItemTitle 登出
 //- 導覽列
-VAppBar(image="https://images.unsplash.com/photo-1706646168463-1054bf7c4d84?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyOXx8fGVufDB8fHx8fA%3D%3D" style="color: white;" height="100")
+VAppBar
   VContainer.d-flex.align-center
     VBtn(to="/" :active="false")
-      VAppBarTitle(style="") 剪單
+      VAppBarTitle(style="font-size: 2rem;") 剪單
     VSpacer
     //- 手機板導覽列
     template(v-if="isMobile")
       VAppBarNavIcon(@click="drawer = true")
-    //- 電腦版導覽列
-    //- template(v-else)
-    //- template(v-for="item in navItems" :key="item.to")
-    //-   VBtn(:to="item.to" :prepend-icon="item.icon" v-if="item.show")  {{ item.text }}
-    //-     VBadge(color="error" :content="user.cart" v-if="item.to === '/cart'" floating)
-    //- VBtn(prepend-icon="mdi-logout" v-if="user.isLogin" @click="logout") 登出
     template(v-else)
       template(v-for="item in navItems", :key="item.to")
         v-menu(open-on-hover)
@@ -46,6 +40,11 @@ VAppBar(image="https://images.unsplash.com/photo-1706646168463-1054bf7c4d84?w=50
 //- 頁面內容
 VMain
   RouterView(:key="$route.path")
+
+v-footer
+  v-row(justify="center", no-gutters)
+    v-btn(v-for="link in links", :key="link", color="white", variant="text", class="mx-2", rounded="xl") {{ link }}
+    v-col.text-center.mt-4(cols="12") {{ new Date().getFullYear() }} — <strong>剪單</strong>
 </template>
 
 <script setup>
@@ -71,6 +70,7 @@ const drawer = ref(false)
 // 導覽列項目
 const navItems = computed(() => {
   return [
+    { to: '/serve', text: '服務', icon: 'mdi-head-heart', show: user.isLogin || !user.isLogin },
     { to: '/register', text: '註冊', icon: 'mdi-account-plus', show: !user.isLogin },
     { to: '/login', text: '登入', icon: 'mdi-login', show: !user.isLogin },
     {
@@ -125,4 +125,32 @@ const logout = async () => {
   }
 }
 
+const links = ref([
+  'Home',
+  'About Us',
+  'Team',
+  'Services',
+  'Blog',
+  'Contact Us'
+])
+
 </script>
+
+<style scoped>
+.v-app-bar {
+  background-color: #BB9A88;
+  color: #ffffff;
+}
+
+.v-main {
+  background: #f6f1e7;
+}
+
+.v-footer {
+  background-color: #979D6e;
+  color: #ffffff;
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+}
+</style>
