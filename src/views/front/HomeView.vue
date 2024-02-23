@@ -149,14 +149,14 @@ import { Pagination, EffectCoverflow, Autoplay } from 'swiper/modules'
 const modules = [Pagination, EffectCoverflow, Autoplay]
 const show = ref(false)
 
-const { apiAuth } = useApi()
+const { api } = useApi()
 const createSnackbar = useSnackbar()
 
 const images = ref([])
 
 onMounted(async () => {
   try {
-    const { data } = await apiAuth.get('/pictures/all')
+    const { data } = await api.get('/pictures/all')
     images.value = data.result.data
   } catch (error) {
     createSnackbar('error', '取得圖片失敗')
