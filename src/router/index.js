@@ -116,20 +116,6 @@ const routes = [
           login: false,
           admin: false
         }
-      },
-      {
-        path: '/404',
-        name: 'NotFound',
-        component: () => import('@/views/front/NotFoundView.vue'),
-        meta: {
-          title: '剪單 | 找不到',
-          login: false,
-          admin: false
-        }
-      },
-      {
-        path: '/:pathMatch(.*)*',
-        redirect: '/404'
       }
     ]
   },
@@ -188,6 +174,20 @@ const routes = [
         }
       }
     ]
+  },
+  {
+    path: '/404',
+    name: 'NotFound',
+    component: () => import('@/views/front/NotFoundView.vue'),
+    meta: {
+      title: '剪單 | 找不到',
+      login: false,
+      admin: false
+    }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/404'
   }
 ]
 
