@@ -2,7 +2,7 @@
   <VContainer>
     <VRow>
       <VCol cols="12">
-        <h1 style="text-align: center; margin: 10px;">---作品分享---</h1>
+        <h1 style="text-align: center; margin: 10px;">---最新作品---</h1>
         <swiper :effect="'coverflow'" :autoplay="{ delay: 5000, disableOnInteraction: false, }" :centeredSlides="true"
           :slidesPerView="3" :coverflowEffect="{
             rotate: 60,
@@ -10,12 +10,9 @@
             depth: 10,
             slideShadows: false,
           }" :pagination="true" :modules="modules" class="mySwiper" loop>
-          <swiper-slide><img src="https://picsum.photos/1200/1200/?random=1"></swiper-slide>
-          <swiper-slide><img src="https://picsum.photos/1200/1200/?random=2"></swiper-slide>
-          <swiper-slide><img src="https://picsum.photos/1200/1200/?random=3"></swiper-slide>
-          <swiper-slide><img src="https://picsum.photos/1200/1200/?random=4"></swiper-slide>
-          <swiper-slide><img src="https://picsum.photos/1200/1200/?random=5"></swiper-slide>
-          <swiper-slide><img src="https://picsum.photos/1200/1200/?random=6"></swiper-slide>
+          <swiper-slide v-for="(image, index) in images" :key="index">
+            <img :src="image.image">
+          </swiper-slide>
         </swiper>
       </VCol>
       <VCol cols="12">
@@ -131,22 +128,13 @@
       </VCol>
     </VRow>
   </VContainer>
-
-  <!-- <v-footer>
-    <v-row justify="center" no-gutters>
-      <v-btn v-for="link in links" :key="link" color="black" variant="text" class="mx-2" rounded="xl">
-        {{ link }}
-      </v-btn>
-      <v-col class="text-center mt-4" cols="12">
-        {{ new Date().getFullYear() }} — <strong>剪單</strong>
-      </v-col>
-    </v-row>
-  </v-footer> -->
 </template>
 
 <script setup>
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useApi } from '@/composables/axios'
+import { useSnackbar } from 'vuetify-use-dialog'
 import 'swiper/css'
 import 'swiper/css/effect-coverflow'
 import 'swiper/css/pagination'
@@ -156,15 +144,19 @@ import { Pagination, EffectCoverflow, Autoplay } from 'swiper/modules'
 const modules = [Pagination, EffectCoverflow, Autoplay]
 const show = ref(false)
 
-const links = ref([
-  'Home',
-  'About Us',
-  'Team',
-  'Services',
-  'Blog',
-  'Contact Us'
-])
+const { apiAuth } = useApi()
+const createSnackbar = useSnackbar()
 
+const images = ref([])
+
+onMounted(async () => {
+  try {
+    const { data } = await apiAuth.get('/pictures/all')
+    images.value = data.result.data
+  } catch (error) {
+    createSnackbar('error', '取得圖片失敗')
+  }
+})
 </script>
 
 <style scoped>
@@ -180,16 +172,7 @@ const links = ref([
 }
 
 .swiper-slide img {
-  width: 100%;
-}
-
-.v-footer {
-  margin-top: 100px;
-  background-color: #979D6e;
-  color: #000;
-  padding: 10px;
-  text-align: center;
-  bottom: 0;
-  width: 100%;
+  width: 500px;
+  height: 500px;
 }
 </style>

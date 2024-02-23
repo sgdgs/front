@@ -31,10 +31,6 @@ VContainer
           )
         template(#[`item.image`]="{ item }")
           VImg(:src="item.image" height="50px")
-        template(#[`item.sell`]="{ item }")
-          VIcon(icon="mdi-check" v-if="item.sell")
-        template(#[`item.edit`]="{ item }")
-          VBtn(icon="mdi-pencil" variant="text" color="blue" @click="openDialog(item)")
         template(#[`item.delete`]="{ item }")
           VBtn(icon="mdi-delete" variant="text" color="red" @click="deleteProduct(item._id)")
 VDialog(v-model="dialog" persistent width="500px")
@@ -47,32 +43,10 @@ VDialog(v-model="dialog" persistent width="500px")
           v-model="name.value.value"
           :error-messages="name.errorMessage.value"
         )
-        //- VTextField(
-        //-   label="價格"
-        //-   type="number" min="0"
-        //-   v-model="price.value.value"
-        //-   :error-messages="price.errorMessage.value"
-        //- )
-        //- VSelect(
-        //-   label="分類"
-        //-   :items="categories"
-        //-   v-model="category.value.value"
-        //-   :error-messages="category.errorMessage.value"
-        //- )
-        //- VCheckbox(
-        //-   label="上架"
-        //-   v-model="sell.value.value"
-        //-   :error-messages="sell.errorMessage.value"
-        //- )
-        //- VTextarea(
-        //-   label="說明"
-        //-   v-model="description.value.value"
-        //-   :error-messages="description.errorMessage.value"
-        //- )
         VueFileAgent(
           v-model="fileRecords"
           v-model:rawModelValue="rawFileRecords"
-          accept="image/jpeg,image/png"
+          accept="image/jpeg,image/png/"
           deletable
           :error-text="{type: '檔案格式不支援', size: '檔案超過 1MB 大小限制'}"
           help-text="選擇檔案或拖曳到這裡"
@@ -105,12 +79,7 @@ const dialogId = ref('')
 // 打開編輯對話框
 const openDialog = (item) => {
   if (item) {
-    // dialogId.value = item._id
     name.value.value = item.name
-    // price.value.value = item.price
-    // description.value.value = item.description
-    // category.value.value = item.category
-    // sell.value.value = item.sell
   } else {
     dialogId.value = ''
   }
@@ -123,43 +92,19 @@ const closeDialog = () => {
   fileAgent.value.deleteFileRecord()
 }
 
-// 分類
-// const categories = ['衣服', '食品', '3C', '遊戲']
 // 表單驗證
 const schema = yup.object({
   name: yup
     .string()
     .required('缺少商品名稱')
-  // price: yup
-  //   .number()
-  //   .typeError('商品價格格式錯誤')
-  //   .required('缺少商品價格')
-  //   .min(0, '商品價格不能小於 0'),
-  // description: yup
-  //   .string()
-  //   .required('缺少商品說明'),
-  // category: yup
-  //   .string()
-  //   .required('缺少商品分類')
-  //   .test('isCategory', '商品分類錯誤', value => categories.includes(value)),
-  // sell: yup
-  //   .boolean()
 })
 const { handleSubmit, isSubmitting, resetForm } = useForm({
   validationSchema: schema,
   initialValues: {
     name: ''
-    // price: 0,
-    // description: '',
-    // category: '',
-    // sell: false
   }
 })
 const name = useField('name')
-// const price = useField('price')
-// const description = useField('description')
-// const category = useField('category')
-// const sell = useField('sell')
 
 const fileRecords = ref([])
 const rawFileRecords = ref([])
@@ -224,12 +169,7 @@ const tableProducts = ref([])
 // 表格欄位設定
 const tableHeaders = [
   { title: '圖片', align: 'center', sortable: false, key: 'image' },
-  // { title: '名稱', align: 'center', sortable: true, key: 'name' },
-  // { title: '價格', align: 'center', sortable: true, key: 'price' },
-  // { title: '說明', align: 'center', sortable: true, key: 'description' },
-  // { title: '分類', align: 'center', sortable: true, key: 'category' },
-  // { title: '上架', align: 'center', sortable: true, key: 'sell' },
-  // { title: '編輯', align: 'center', sortable: false, key: 'edit' },
+  { title: '名稱', align: 'center', sortable: true, key: 'name' },
   { title: '刪除', align: 'center', sortable: false, key: 'delete' }
 ]
 // 表格載入狀態

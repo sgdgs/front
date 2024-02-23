@@ -1,7 +1,7 @@
 <template>
   <VContainer>
     <VCol cols="12">
-      <h1 style="text-align: center;">預約紀錄</h1>
+      <h1 style="text-align: center;">預約管理</h1>
     </VCol>
     <VCol cols="12">
       <VDataTable :items="check.result" :headers="headers">

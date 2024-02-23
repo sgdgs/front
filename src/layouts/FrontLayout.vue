@@ -125,20 +125,22 @@ const logout = async () => {
   }
 }
 
-const links = ref([
-  'Home',
-  'About Us',
-  'Team',
-  'Services',
-  'Blog',
-  'Contact Us'
-])
+const links = computed(() => {
+  return [
+    'Home',
+    'About Us',
+    'Team',
+    'Services',
+    'Blog',
+    'Contact Us'
+  ]
+})
 
 </script>
 
 <style scoped>
 .v-app-bar {
-  background-color: #BB9A88;
+  background-color: #bb9f91;
   color: #ffffff;
 }
 
@@ -147,7 +149,7 @@ const links = ref([
 }
 
 .v-footer {
-  background-color: #979D6e;
+  background-color: #BB9A88;
   color: #ffffff;
   text-align: center;
   bottom: 0;
