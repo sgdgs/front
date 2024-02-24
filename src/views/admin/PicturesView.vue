@@ -182,7 +182,7 @@ const tableSearch = ref('')
 const tableLoadItems = async () => {
   tableLoading.value = true
   try {
-    const { data } = await apiAuth.get('/pictures/all', {
+    const { data } = await apiAuth.get('/pictures/ ', {
       params: {
         page: tablePage.value,
         itemsPerPage: tableItemsPerPage.value,
