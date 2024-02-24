@@ -22,29 +22,22 @@ VAppBar
     //- 手機板導覽列
     template(v-if="isMobile")
       VAppBarNavIcon(@click="drawer = true")
-<<<<<<< Updated upstream
-=======
     //- 電腦版導覽列
->>>>>>> Stashed changes
+
     template(v-else)
-    template(v-for="item in navItems" :key="item.to")
-      VBtn(:to="item.to" :prepend-icon="item.icon" v-if="item.show")  {{ item.text }}
-        VBadge(color="error" :content="user.cart" v-if="item.to === '/cart'" floating)
+      template(v-for="item in navItems", :key="item.to")
+        v-menu(open-on-hover)
+          template(v-slot:activator="{ props }")
+            VBtn(v-bind="props", text,:key="item.to", :to="item.to" v-if="item.show")
+              v-icon(v-if="item.icon") {{ item.icon }}
+              | {{ item.text }}
+              VBadge(color="error" :content="user.cart" v-if="item.to === '/cart'" floating)
+          v-list(v-if="item.subItems && item.subItems.length > 0")
+            v-list-item(v-for="subItem in item.subItems", :key="subItem.to", :to="subItem.to")
+              v-list-item-title
+                VIcon(:icon="subItem.icon" :size="16" class="mx-2")
+                | {{ subItem.text }}
     VBtn(prepend-icon="mdi-logout" v-if="user.isLogin" @click="logout") 登出
-    //- template(v-else)
-    //-   template(v-for="item in navItems", :key="item.to")
-    //-     v-menu(open-on-hover)
-    //-       template(v-slot:activator="{ props }")
-    //-         VBtn(v-bind="props", text,:key="item.to", :to="item.to" v-if="item.show")
-    //-           v-icon(v-if="item.icon") {{ item.icon }}
-    //-           | {{ item.text }}
-    //-           VBadge(color="error" :content="user.cart" v-if="item.to === '/cart'" floating)
-    //-       v-list(v-if="item.subItems && item.subItems.length > 0")
-    //-         v-list-item(v-for="subItem in item.subItems", :key="subItem.to", :to="subItem.to")
-    //-           v-list-item-title
-    //-             VIcon(:icon="subItem.icon" :size="16" class="mx-2")
-    //-             | {{ subItem.text }}
-    //- VBtn(prepend-icon="mdi-logout" v-if="user.isLogin" @click="logout") 登出
 
 //- 頁面內容
 VMain
@@ -79,40 +72,28 @@ const drawer = ref(false)
 // 導覽列項目
 const navItems = computed(() => {
   return [
-<<<<<<< Updated upstream
     { to: '/serve', text: '服務', icon: 'mdi-head-heart', show: user.isLogin || !user.isLogin },
-=======
-    // { to: '/register', text: '註冊', icon: 'mdi-account-plus', show: !user.isLogin },
-    // { to: '/login', text: '登入', icon: 'mdi-login', show: !user.isLogin },
-    // {
-    //   icon: 'mdi-calendar',
-    //   text: '預約',
-    //   show: user.isLogin,
-    //   subItems: [
-    //     { to: '/reserve', text: '立即預約', icon: 'mdi-calendar-plus' },
-    //     { to: '/check', text: '預約紀錄', icon: 'mdi-calendar-text' }
-    //   ]
-    // },
-    // {
-    //   icon: 'mdi-cart',
-    //   text: '商品',
-    //   show: user.isLogin,
-    //   subItems: [
-    //     { to: '/buy', text: '商品列表', icon: 'mdi-cart' },
-    //     { to: '/cart', text: '購物車', icon: 'mdi-cart' },
-    //     { to: '/orders', text: '訂單', icon: 'mdi-list-box' }
-    //   ]
-    // },
-    // { to: '/admin', text: '管理', icon: 'mdi-cog', show: user.isLogin && user.isAdmin },
-    // { to: '/manage', text: '會員資料', icon: 'mdi-account', show: user.isLogin }
->>>>>>> Stashed changes
     { to: '/register', text: '註冊', icon: 'mdi-account-plus', show: !user.isLogin },
     { to: '/login', text: '登入', icon: 'mdi-login', show: !user.isLogin },
-    { to: '/reserve', text: '預約', icon: 'mdi-calendar-plus', show: user.isLogin },
-    { to: '/check', text: '預約紀錄', icon: 'mdi-calendar-text', show: user.isLogin },
-    { to: '/buy', text: '商品列表', icon: 'mdi-cart', show: user.isLogin },
-    { to: '/cart', text: '購物車', icon: 'mdi-cart', show: user.isLogin },
-    { to: '/orders', text: '訂單', icon: 'mdi-list-box', show: user.isLogin },
+    {
+      icon: 'mdi-calendar',
+      text: '預約',
+      show: user.isLogin,
+      subItems: [
+        { to: '/reserve', text: '立即預約', icon: 'mdi-calendar-plus' },
+        { to: '/check', text: '預約紀錄', icon: 'mdi-calendar-text' }
+      ]
+    },
+    {
+      icon: 'mdi-cart',
+      text: '商品',
+      show: user.isLogin,
+      subItems: [
+        { to: '/buy', text: '商品列表', icon: 'mdi-cart' },
+        { to: '/cart', text: '購物車', icon: 'mdi-cart' },
+        { to: '/orders', text: '訂單', icon: 'mdi-list-box' }
+      ]
+    },
     { to: '/admin', text: '管理', icon: 'mdi-cog', show: user.isLogin && user.isAdmin },
     { to: '/manage', text: '會員資料', icon: 'mdi-account', show: user.isLogin }
   ]

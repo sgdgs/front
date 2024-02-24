@@ -14,11 +14,6 @@
             <img :src="image.image">
           </swiper-slide>
         </swiper>
-        <!-- <swiper>
-          <swiper-slide>
-            <img src="https://picsum.photos/300/200/?random=10" />
-          </swiper-slide>
-        </swiper> -->
       </VCol>
       <VCol cols="12">
         <h1 style="text-align: center; margin: 10px;">---最新消息---</h1>
