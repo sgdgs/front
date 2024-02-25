@@ -2,12 +2,16 @@
 //- 手機版側欄
 VNavigationDrawer(v-model="drawer" temporary location="left" v-if="isMobile")
   VList(nav)
-    template(v-for="item in navItems" :key="item.to")
-      VListItem(:to="item.to" v-if="item.show")
-        template(#prepend)
-          VIcon(:icon="item.icon")
-        template(#append)
-          VBadge(color="error" :content="user.cart" v-if="item.to === '/cart'" inline)
+    template(v-for="item in navItems" :key="item")
+      VListGroup(v-model="item.active" :prepend-icon="item.icon" v-if="item.subItems && item.subItems.length > 0")
+        template(v-slot:activator="{ props }" v-if="item.show")
+          VListItem(v-bind="props")
+            VListItemTitle {{ item.text }}
+        VListItem(v-for="subItem in item.subItems" :key="subItem.to" :to="subItem.to")
+          VIcon(:icon="subItem.icon" :size="18" class="mx-2")
+          | {{ subItem.text }}
+      VListItem(:to="item.to" v-else)
+        VIcon(:icon="item.icon")
         VListItemTitle {{ item.text }}
     VListItem(v-if="user.isLogin" @click="logout")
       template(#prepend)

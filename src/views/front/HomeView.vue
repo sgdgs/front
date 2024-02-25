@@ -1,4 +1,21 @@
 <template>
+  <VCol cols="12">
+    <swiper :effect="'fade'" :autoplay="{ delay: 10000, disableOnInteraction: false, }" :navigation="true"
+      :modules="modules" class="mySwiper1" loop="true">
+      <swiper-slide>
+        <img src="../../image/1.webp" />
+        <div class="txt">剪單，但不簡單</div>
+      </swiper-slide>
+      <swiper-slide>
+        <img src="../../image/2.jpg" />
+        <div class="txt">讓我們來實現您的想法</div>
+      </swiper-slide>
+      <swiper-slide>
+        <img src="../../image/3.jpg" />
+        <div class="txt">給自己一個改變的契機</div>
+      </swiper-slide>
+    </swiper>
+  </VCol>
   <VContainer>
     <VRow>
       <VCol cols="12">
@@ -9,7 +26,7 @@
             stretch: 0,
             depth: 10,
             slideShadows: false,
-          }" :pagination="true" :modules="modules" class="mySwiper" loop>
+          }" :pagination="true" :modules="modules" class="mySwiper2" loop="true">
           <swiper-slide v-for="(image, index) in images" :key="index">
             <img :src="image.image">
           </swiper-slide>
@@ -160,19 +177,48 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.swiper {
+.mySwiper1 {
+  width: 100%;
+  height: 750px;
+  margin-bottom: 65px;
+}
+
+.mySwiper1 .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  filter: blur(2px);
+  object-fit: cover;
+}
+
+.mySwiper2 {
   width: 80%;
   padding-top: 50px;
   padding-bottom: 50px;
 }
 
-.swiper-slide {
+.mySwiper2 .swiper-slide {
   background-position: center;
   background-size: contain;
 }
 
-.swiper-slide img {
+.mySwiper2 .swiper-slide img {
   width: 500px;
   height: 500px;
+
+}
+
+.txt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 75px;
+  font-weight: 400;
+  color: rgb(255, 255, 255);
+}
+
+.v-col {
+  margin: 0;
+  padding: 0;
 }
 </style>
