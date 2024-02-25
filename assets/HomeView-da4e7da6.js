@@ -1,0 +1,1 @@
+import{_ as e,a1 as a,a2 as t,a7 as o,aa as r}from"./index-80d7f52a.js";import{V as c}from"./VContainer-8ac70d2b.js";const n={};function s(_,f){return o(),a(c,null,{default:t(()=>[r(" 管理員首頁 ")]),_:1})}const m=e(n,[["render",s]]);export{m as default};
