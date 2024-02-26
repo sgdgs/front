@@ -47,7 +47,13 @@ onMounted(async () => {
 })
 </script>
 
-<style scoped lang="sass">
-.product-card
+<style scoped >
+.product-card {
   opacity: 0
+}
+
+h1 {
+  font-family: 'MyCustomFont';
+  filter: drop-shadow(2px 2px 10px #422900e7);
+}
 </style>

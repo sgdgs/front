@@ -1,6 +1,6 @@
 <template>
   <VContainer>
-    <h1 style="text-align: center;">預約日期</h1>
+    <h1>預約日期</h1>
     <VRow>
       <VCol cols="12" sm="6">
         <DatePicker style="width: 80%; margin-left: 10%;" v-model="date.value.value" mode="dateTime" :rules="rules"
@@ -145,5 +145,11 @@ p {
 
 .v-card {
   background: #ffffff63;
+}
+
+h1 {
+  font-family: 'MyCustomFont';
+  filter: drop-shadow(2px 2px 10px #422900e7);
+  text-align: center;
 }
 </style>

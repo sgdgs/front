@@ -90,6 +90,8 @@ h1 {
   box-shadow: none;
   display: flex;
   margin-left: 15%;
+  font-family: 'MyCustomFont';
+  filter: drop-shadow(2px 2px 10px #422900e7);
 }
 
 .v-card-title {
@@ -127,5 +129,10 @@ h1 {
 .p .v-img {
   width: 100%;
   object-fit: contain;
+}
+
+h1 {
+  font-family: 'MyCustomFont';
+  filter: drop-shadow(2px 2px 10px #422900e7);
 }
 </style>

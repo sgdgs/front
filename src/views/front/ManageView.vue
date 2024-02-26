@@ -143,4 +143,9 @@ const updatePassword = async () => {
   margin-left: 50%;
   transform: translateX(-50%);
 }
+
+h1 {
+  font-family: 'MyCustomFont';
+  filter: drop-shadow(2px 2px 10px #422900e7);
+}
 </style>

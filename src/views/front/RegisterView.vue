@@ -127,4 +127,9 @@ const submit = handleSubmit(async (values) => {
   margin-bottom: 25%;
   width: 100%;
 }
+
+h1 {
+  font-family: 'MyCustomFont';
+  filter: drop-shadow(2px 2px 10px #422900e7);
+}
 </style>
