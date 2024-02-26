@@ -124,7 +124,7 @@ const closeDialog = () => {
 }
 
 // 分類
-const categories = ['衣服', '食品', '3C', '遊戲']
+const categories = ['梳子', '剪刀', '電髮器材', '美髮產品', '其他']
 // 表單驗證
 const schema = yup.object({
   name: yup

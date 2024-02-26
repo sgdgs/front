@@ -5,9 +5,7 @@
       <VCol cols="12" sm="6">
         <DatePicker style="width: 80%; margin-left: 10%;" v-model="date.value.value" mode="dateTime" :rules="rules"
           :min-date="minDate" :disabled-dates="disabledDates" />
-      </VCol>
-      <VCol cols="12" sm="6">
-        <VCol cols="12" style="margin-left: 50%; transform: translate(-50%);">
+        <VCol cols="12" style="width: 80%; margin-left: 10%;">
           <VForm :disabled="isSubmitting" @submit.prevent="submit">
             <VTextField :model-value="formattedDate" label="預約日期" readonly :error-messages="date.errorMessage.value">
             </VTextField>
@@ -15,11 +13,26 @@
             <VTextField v-model="phone.value.value" label="電話" :error-messages="phone.errorMessage.value"></VTextField>
             <VSelect v-model="serviceItem" label="服務項目" :items="items" variant="outlined">
             </VSelect>
-            <VBtn style="width: 30%; font-size: 1.5rem; margin-left: 50%; transform: translate(-50%);" color="primary"
-              @click="submit" type="submit" :loading="isSubmitting">預約
+            <VBtn style="width: 30%; font-size: 1.5rem; margin-left: 50%; transform: translate(-50%);"
+              color="brown-lighten-1" @click="submit" type="submit" :loading="isSubmitting">預約
             </VBtn>
           </VForm>
         </VCol>
+      </VCol>
+      <VCol cols="12" sm="6">
+        <v-card style="margin-top: 20%;">
+          <v-card-text style="margin: 10px;">
+            <h2>預約注意事項</h2>
+            <p>●每週一固定公休</p>
+            <p>●為服務流程方便操作避免穿著高領衣物</p>
+            <p>●建議大家可以選擇平日下午前來剪單髮廊，可以避開人潮較多時段</p>
+            <p>●剪髮：流程約 1 hr</p>
+            <p>●染髮：流程約 1-2 hr</p>
+            <p>●燙髮：流程約 2-3 hr</p>
+            <p>●特殊 燙/染 ：流程約 2-3 hr</p>
+            <p>●護髮：流程約 1 hr</p>
+          </v-card-text>
+        </v-card>
       </VCol>
     </VRow>
   </VContainer>
@@ -63,7 +76,7 @@ const { handleSubmit, isSubmitting } = useForm({
 const name = useField('name')
 const phone = useField('phone')
 const date = useField('date')
-const items = ref(['洗髮', '剪髮', '燙髮', '染髮', '護髮', '燙染', '燙染護', '燙染護剪'])
+const items = ref(['洗髮', '剪髮', '燙髮', '染髮', '護髮'])
 const serviceItem = ref(null)
 
 const submit = handleSubmit(async (values) => {
@@ -122,6 +135,15 @@ const formattedDate = computed(() => {
 
 </script>
 
-<!-- 尚未修正當禮拜一時，是可以選取狀態 -->
+<style scoped>
+p {
+  font-size: 20px;
+  font-weight: 300;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
-<style scoped></style>
+.v-card {
+  background: #ffffff63;
+}
+</style>

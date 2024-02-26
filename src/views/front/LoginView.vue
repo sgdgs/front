@@ -1,10 +1,11 @@
 <template lang="pug">
 VContainer
   VRow
-    VCol(cols="12")
-      h1 登入
+    VCol(cols="12" sm="6" )
+      h1 LOGIN
+      p login your account with username and password
     VDivider
-    VCol(cols="12")
+    VCol(cols="12" sm="6")
       VForm(:disabled="isSubmitting" @submit.prevent="submit")
         VTextField(
           label="帳號"
@@ -18,7 +19,9 @@ VContainer
           v-model="password.value.value"
           :error-messages="password.errorMessage.value"
         )
-        VBtn(type="submit" color="green") 登入
+        VBtn(type="submit" color="brown-lighten-2") 登入
+    VCol(cols="12" sm="6")
+      img(src="@/image/dog.jpg" width="100%" )
 </template>
 
 <script setup>
@@ -64,7 +67,6 @@ const submit = handleSubmit(async (values) => {
       password: values.password
     })
     user.login(data.result)
-    console.log(data.result)
     createSnackbar({
       text: '登入成功',
       showCloseButton: false,
@@ -90,3 +92,10 @@ const submit = handleSubmit(async (values) => {
   }
 })
 </script>
+
+<style scoped>
+.v-form {
+  margin-bottom: 25%;
+  width: 100%;
+}
+</style>

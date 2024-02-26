@@ -1,6 +1,6 @@
 <template lang="pug">
-VCard.product-card
-  VImg(:src="image" cover height="200")
+VCard(height="500").product-card
+  VImg(:src="image" contain  height="300")
   VCardTitle
     RouterLink.text-primary.text-decoration-none(:to="'/products/' + _id") {{ name }}
   VCardSubtitle ${{ price }}
@@ -56,3 +56,5 @@ const addCart = async () => {
   }
 }
 </script>
+
+<style scoped></style>

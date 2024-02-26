@@ -2,7 +2,7 @@
 VContainer
   VRow
     VCol(cols="12")
-      h1 剪單
+      h1 商品
     VDivider
     VCol(cols="12" md="6" lg="3" v-for="product in products" :key="product._id")
       ProductCard(v-bind="product")

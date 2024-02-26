@@ -1,39 +1,31 @@
 <template>
   <VCol cols="12">
-    <swiper :effect="'fade'" :autoplay="{ delay: 10000, disableOnInteraction: false, }" :navigation="true"
-      :modules="modules" class="mySwiper1" loop="true">
-      <swiper-slide>
-        <img src="../../image/1.webp" />
-        <div class="txt">剪單，但不簡單</div>
-      </swiper-slide>
-      <swiper-slide>
-        <img src="../../image/2.jpg" />
-        <div class="txt">讓我們來實現您的想法</div>
-      </swiper-slide>
-      <swiper-slide>
-        <img src="../../image/3.jpg" />
-        <div class="txt">給自己一個改變的契機</div>
-      </swiper-slide>
-    </swiper>
+    <div class="title">
+      <div class="txt">剪 單</div>
+      <div class="bk">
+        <img src="../../image/bg.jpg">
+      </div>
+    </div>
   </VCol>
   <VContainer>
     <VRow>
       <VCol cols="12">
-        <h1 style="text-align: center; margin: 10px;">---最新作品---</h1>
+        <h1 style="text-align: center; margin: 10px;">
+          熱門造型</h1>
         <swiper :effect="'coverflow'" :autoplay="{ delay: 5000, disableOnInteraction: false, }" :centeredSlides="true"
           :slidesPerView="3" :coverflowEffect="{
             rotate: 60,
             stretch: 0,
             depth: 10,
             slideShadows: false,
-          }" :pagination="true" :modules="modules" class="mySwiper2" loop="true">
+          }" :pagination="true" :modules="modules" class="mySwiper2" :loop="true">
           <swiper-slide v-for="(image, index) in images" :key="index">
             <img :src="image.image">
           </swiper-slide>
         </swiper>
       </VCol>
       <VCol cols="12">
-        <h1 style="text-align: center; margin: 10px;">---最新消息---</h1>
+        <h1 style="text-align: center; margin: 10px;">最新消息</h1>
       </VCol>
       <VCol cols="12" sm="4">
         <v-card class="mx-auto" max-width="344">
@@ -47,7 +39,7 @@
           </v-card-subtitle>
 
           <v-card-actions>
-            <v-btn color="orange-lighten-2" variant="text">
+            <v-btn color="brown-lighten-2" variant="text">
               Explore
             </v-btn>
 
@@ -83,7 +75,7 @@
           </v-card-subtitle>
 
           <v-card-actions>
-            <v-btn color="orange-lighten-2" variant="text">
+            <v-btn color="brown-lighten-2" variant="text">
               Explore
             </v-btn>
 
@@ -119,7 +111,7 @@
           </v-card-subtitle>
 
           <v-card-actions>
-            <v-btn color="orange-lighten-2" variant="text">
+            <v-btn color="brown-lighten-2" variant="text">
               Explore
             </v-btn>
 
@@ -174,22 +166,10 @@ onMounted(async () => {
     createSnackbar('error', '取得圖片失敗')
   }
 })
+
 </script>
 
 <style scoped>
-.mySwiper1 {
-  width: 100%;
-  height: 750px;
-  margin-bottom: 65px;
-}
-
-.mySwiper1 .swiper-slide img {
-  width: 100%;
-  height: 100%;
-  filter: blur(2px);
-  object-fit: cover;
-}
-
 .mySwiper2 {
   width: 80%;
   padding-top: 50px;
@@ -202,23 +182,54 @@ onMounted(async () => {
 }
 
 .mySwiper2 .swiper-slide img {
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  height: 100%;
+}
 
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('../../../font/GenWanMin-EL.ttc');
 }
 
 .txt {
+  width: 100%;
+  text-align: center;
   position: absolute;
-  top: 50%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 75px;
-  font-weight: 400;
+  font-size: 50px;
+  font-weight: 500;
   color: rgb(255, 255, 255);
+  display: flex;
+  writing-mode: vertical-rl;
+  justify-content: center;
+  align-items: center;
+  font-family: 'MyCustomFont';
+  filter: drop-shadow(2px 2px 10px #422900e7);
 }
 
 .v-col {
-  margin: 0;
+  margin-bottom: 50px;
   padding: 0;
+}
+
+.bg {
+  position: relative;
+  width: 100%;
+  height: 750px;
+  background-color: #ffffff;
+  opacity: 0.75;
+  z-index: 0;
+}
+
+.title img {
+  width: 100%;
+  height: 950px;
+  object-fit: cover;
+}
+
+.mx-auto {
+  margin-bottom: 50px;
 }
 </style>

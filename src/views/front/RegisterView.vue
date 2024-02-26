@@ -1,10 +1,10 @@
 <template lang="pug">
 VContainer
   VRow
-    VCol(cols="12")
+    VCol(cols="12" sm="6")
       h1 註冊
     VDivider
-    VCol(cols="12")
+    VCol(cols="12" sm="6")
       VForm(:disabled="isSubmitting" @submit.prevent="submit")
         VTextField(
           label="帳號"
@@ -29,7 +29,9 @@ VContainer
           v-model="passwordConfirm.value.value"
           :error-messages="passwordConfirm.errorMessage.value"
         )
-        VBtn(type="submit" color="green") 註冊
+        VBtn(type="submit" color="brown-lighten-2") 註冊
+    VCol(cols="12" sm="6")
+      img(src="@/image/dog.jpg" alt="註冊圖片" width="100%")
 </template>
 
 <script setup>
@@ -119,3 +121,10 @@ const submit = handleSubmit(async (values) => {
   }
 })
 </script>
+
+<style scoped>
+.v-form {
+  margin-bottom: 25%;
+  width: 100%;
+}
+</style>

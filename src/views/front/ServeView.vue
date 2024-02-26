@@ -2,58 +2,74 @@
   <v-container>
     <h1>我們的服務</h1>
     <v-row>
-      <v-col :cols="12" md="6">
+      <v-col :cols="12" md="12">
         <v-card>
-          <div class="p">
-            <v-img src="../../image/FHmihw3.jpg"></v-img>
+          <div class=" p">
+            <v-img src="../../image/洗髮.jpg"></v-img>
           </div>
           <div>
             <v-card-title>洗髮</v-card-title>
             <v-card-subtitle>SHAMPOO</v-card-subtitle>
             <v-card-text>
+              <p>■包含頸肩按摩、潤絲服務</p>
+              <br>
               <p>價格:250元</p>
             </v-card-text>
           </div>
         </v-card>
-      </v-col>
-      <v-col :cols="12" md="6">
         <v-card>
-          <div class="p">
-            <v-img src="../../image/VMb07rK.jpg"></v-img>
+          <div class=" p">
+            <v-img src="../../image/剪髮.jpg"></v-img>
           </div>
           <div>
             <v-card-title>剪髮</v-card-title>
-            <v-card-subtitle>CUT HAIR</v-card-subtitle>
+            <v-card-subtitle>HAIR CUTTING</v-card-subtitle>
             <v-card-text>
-              <p>價格:250元</p>
+              <p>■包含完整洗髮服務</p>
+              <br>
+              <p>價格:800元</p>
             </v-card-text>
           </div>
         </v-card>
-      </v-col>
-      <v-col :cols="12" md="6">
         <v-card>
-          <div class="p">
-            <v-img src="../../image/qnj5yPS.jpg"></v-img>
+          <div class=" p">
+            <v-img src="../../image/染髮.jpg"></v-img>
+          </div>
+          <div>
+            <v-card-title>染髮</v-card-title>
+            <v-card-subtitle>HAIR COLORING</v-card-subtitle>
+            <v-card-text>
+              <p>■包含完整洗髮、剪髮服務</p>
+              <br>
+              <p>價格:1500元</p>
+            </v-card-text>
+          </div>
+        </v-card>
+        <v-card>
+          <div class=" p">
+            <v-img src="../../image/燙髮.jpg"></v-img>
           </div>
           <div>
             <v-card-title>燙髮</v-card-title>
-            <v-card-subtitle>PERMENANT</v-card-subtitle>
+            <v-card-subtitle>HAIR PERM</v-card-subtitle>
             <v-card-text>
-              <p>價格:850元</p>
+              <p>■包含完整洗髮、剪髮服務</p>
+              <br>
+              <p>價格:1500元</p>
             </v-card-text>
           </div>
         </v-card>
-      </v-col>
-      <v-col :cols="12" md="6">
         <v-card>
-          <div class="p">
-            <v-img src="../../image/gjR4KA0.jpg"></v-img>
+          <div class=" p">
+            <v-img src="../../image/護髮.jpg"></v-img>
           </div>
           <div>
             <v-card-title>護髮</v-card-title>
             <v-card-subtitle>HAIR TREATMENT</v-card-subtitle>
             <v-card-text>
-              <p>價格:500元</p>
+              <p>■包含完整洗髮服務</p>
+              <br>
+              <p>價格:650元</p>
             </v-card-text>
           </div>
         </v-card>
@@ -69,14 +85,11 @@ h1 {
 }
 
 .v-card {
+  width: 50%;
   background: none;
   box-shadow: none;
   display: flex;
-}
-
-.s {
-  display: flex;
-  flex-direction: column;
+  margin-left: 15%;
 }
 
 .v-card-title {
@@ -107,13 +120,12 @@ h1 {
 }
 
 .p {
-  width: 300px;
-  height: 300px;
+  width: 500px;
+  height: 500px;
 }
 
 .p .v-img {
   width: 100%;
-  object-fit: cover;
-  border-radius: 10px;
+  object-fit: contain;
 }
 </style>

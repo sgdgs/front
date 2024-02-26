@@ -20,8 +20,9 @@ VNavigationDrawer(v-model="drawer" temporary location="left" v-if="isMobile")
 //- 導覽列
 VAppBar
   VContainer.d-flex.align-center
-    VBtn(to="/" :active="false")
-      VAppBarTitle(style="font-size: 2rem;") 剪單
+    VBtn(to="/" :active="false" style="width: 100px; height: 100px;")
+      VAppBarTitle(style="font-size: 2rem;")
+        img(src="@/image/icon.png" alt="剪單")
     VSpacer
     //- 手機板導覽列
     template(v-if="isMobile")
@@ -49,7 +50,7 @@ VMain
 
 v-footer
   v-row(justify="center", no-gutters)
-    v-btn(v-for="link in links", :key="link", color="white", variant="text", class="mx-2", rounded="xl") {{ link }}
+    v-btn(v-for="link in links", :key="link", color="white", variant="text", class="mx-2", rounded="xl", :to="link.to") {{ link.name }}
     v-col.text-center.mt-4(cols="12") {{ new Date().getFullYear() }} — <strong>剪單</strong>
 </template>
 
@@ -133,12 +134,11 @@ const logout = async () => {
 
 const links = computed(() => {
   return [
-    'Home',
-    'About Us',
-    'Team',
-    'Services',
-    'Blog',
-    'Contact Us'
+    { name: 'Home', to: '/' },
+    { name: 'serve', to: '/serve' },
+    { name: 'product', to: '/buy' },
+    { name: 'reserve', to: '/reserve' },
+    { name: 'about us' }
   ]
 })
 
@@ -151,14 +151,24 @@ const links = computed(() => {
 }
 
 .v-main {
-  background: #f6f1e7;
+  background-image: url('@/image/bkg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
 }
 
 .v-footer {
-  background-color: #BB9A88;
+  background-color: #bb9f91;
   color: #ffffff;
   text-align: center;
-  bottom: 0;
   width: 100%;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+img {
+  width: 70px;
+  height: 70px;
 }
 </style>
