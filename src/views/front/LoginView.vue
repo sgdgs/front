@@ -1,7 +1,7 @@
 <template lang="pug">
 VContainer
   VRow
-    VCol(cols="12" sm="6" )
+    VCol(cols="12" sm="6" class="login")
       h1 LOGIN
       p login your account with username and password
     VDivider
@@ -97,5 +97,14 @@ const submit = handleSubmit(async (values) => {
 .v-form {
   margin-bottom: 25%;
   width: 100%;
+}
+
+.login {
+  color: white
+}
+
+.v-form {
+  background: #ffffff63;
+  padding: 20px;
 }
 </style>

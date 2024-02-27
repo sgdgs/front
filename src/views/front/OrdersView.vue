@@ -4,7 +4,7 @@ VContainer
     VCol(cols="12")
       h1 訂單
     VCol(cols="12")
-      VDataTable(:items="orders" :headers="headers")
+      VDataTable(:items="orders" :headers="headers" class="order")
         template(#[`item.createdAt`]="{ item }")
           | {{ new Date(item.createdAt).toLocaleString() }}
         template(#[`item.cart`]="{ item }")
@@ -60,5 +60,10 @@ onMounted(async () => {
 h1 {
   font-family: 'MyCustomFont';
   filter: drop-shadow(2px 2px 10px #422900e7);
+}
+
+.order {
+  background: #ffffff63;
+  padding: 20px;
 }
 </style>

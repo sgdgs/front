@@ -1,7 +1,7 @@
 <template>
   <VContainer>
     <VCol cols="12">
-      <h1 style="text-align: center;">預約紀錄</h1>
+      <h1>預約紀錄</h1>
     </VCol>
     <VCol cols="12">
       <VDataTable :items="check.result" :headers="headers">
@@ -89,5 +89,6 @@ onMounted(async () => {
 h1 {
   font-family: 'MyCustomFont';
   filter: drop-shadow(2px 2px 10px #422900e7);
+  text-align: center;
 }
 </style>

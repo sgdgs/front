@@ -2,7 +2,7 @@
   <VContainer>
     <h1>預約日期</h1>
     <VRow>
-      <VCol cols="12" sm="6">
+      <VCol cols="12" sm="6" class="left">
         <DatePicker style="width: 80%; margin-left: 10%;" v-model="date.value.value" mode="dateTime" :rules="rules"
           :min-date="minDate" :disabled-dates="disabledDates" />
         <VCol cols="12" style="width: 80%; margin-left: 10%;">
@@ -151,5 +151,10 @@ h1 {
   font-family: 'MyCustomFont';
   filter: drop-shadow(2px 2px 10px #422900e7);
   text-align: center;
+  padding-bottom: 30px;
+}
+
+.left {
+  background-color: #ffffff63;
 }
 </style>

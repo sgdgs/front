@@ -1,5 +1,5 @@
 <template>
-  <h1 style="text-align: center;">會員資料</h1>
+  <h1>會員資料</h1>
   <v-container>
     <v-row>
       <v-col cols="12">
@@ -147,5 +147,11 @@ const updatePassword = async () => {
 h1 {
   font-family: 'MyCustomFont';
   filter: drop-shadow(2px 2px 10px #422900e7);
+  text-align: center;
+  padding-top: 10px;
+}
+
+.v-card {
+  background: #ffffff63;
 }
 </style>

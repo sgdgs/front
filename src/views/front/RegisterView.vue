@@ -2,7 +2,8 @@
 VContainer
   VRow
     VCol(cols="12" sm="6")
-      h1 註冊
+      h1 REGISTER
+      p Register your account with username, email and password
     VDivider
     VCol(cols="12" sm="6")
       VForm(:disabled="isSubmitting" @submit.prevent="submit")
@@ -128,8 +129,13 @@ const submit = handleSubmit(async (values) => {
   width: 100%;
 }
 
-h1 {
-  font-family: 'MyCustomFont';
-  filter: drop-shadow(2px 2px 10px #422900e7);
+h1,
+p {
+  color: white;
+}
+
+.v-form {
+  background: #ffffff63;
+  padding: 20px;
 }
 </style>

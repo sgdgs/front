@@ -3,8 +3,8 @@ VContainer
   VCol(cols="12")
     h1 購物車
   VDivider
-  VCol(cols="12")
-    VDataTable(:items="cart" :headers="headers")
+  VCol(cols="12" )
+    VDataTable(:items="cart" :headers="headers" class="cart")
       template(#[`item.product.name`]="{ item }")
         span(v-if="item.product.sell") {{ item.product.name }}
         span.text-red.text-decoration-line-through(v-else) {{ item.product.name }} (已下架)
@@ -143,5 +143,10 @@ onMounted(async () => {
 h1 {
   font-family: 'MyCustomFont';
   filter: drop-shadow(2px 2px 10px #422900e7);
+}
+
+.cart {
+  background: #ffffff63;
+  padding: 20px;
 }
 </style>

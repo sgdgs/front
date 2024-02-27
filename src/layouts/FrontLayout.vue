@@ -1,7 +1,6 @@
 <template lang="pug">
 //- 手機版側欄
-div
-#page
+div(class="loading")
   v-progress-circular(v-if="isLoading", indeterminate, color="brown-lighten-3", model-value="20", :size="58", :width="5")
   div(v-else)
     VNavigationDrawer(v-model="drawer" temporary location="left" v-if="isMobile")
@@ -32,7 +31,6 @@ div
         template(v-if="isMobile")
           VAppBarNavIcon(@click="drawer = true")
         //- 電腦版導覽列
-
         template(v-else)
           template(v-for="item in navItems", :key="item.to")
             v-menu(open-on-hover)
@@ -56,7 +54,7 @@ div
       v-row(justify="center", no-gutters)
         v-btn(v-for="link in links", :key="link", color="white", variant="text", class="mx-2", rounded="xl", :to="link.to") {{ link.name }}
         v-col.text-center.mt-4(cols="12") {{ new Date().getFullYear() }} — <strong>剪單</strong>
-</template>
+    </template>
 
 <script setup>
 import { useDisplay } from 'vuetify'
@@ -191,13 +189,9 @@ img {
   transform: translate(-50%, -50%);
 }
 
-#page {
-  position: relative;
-  left: 0;
-  top: 0;
+.loading {
   width: 100%;
   height: 100%;
-  z-index: 9999;
   background: #bb9f91;
 }
 </style>
