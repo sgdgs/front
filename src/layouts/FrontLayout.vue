@@ -1,62 +1,66 @@
 <template lang="pug">
 //- 手機版側欄
-VNavigationDrawer(v-model="drawer" temporary location="left" v-if="isMobile")
-  VList(nav)
-    template(v-for="item in navItems" :key="item")
-      VListGroup(v-model="item.active" :prepend-icon="item.icon" v-if="item.subItems && item.subItems.length > 0")
-        template(v-slot:activator="{ props }" v-if="item.show")
-          VListItem(v-bind="props")
+div
+#page
+  v-progress-circular(v-if="isLoading", indeterminate, color="brown-lighten-3", model-value="20", :size="58", :width="5")
+  div(v-else)
+    VNavigationDrawer(v-model="drawer" temporary location="left" v-if="isMobile")
+      VList(nav)
+        template(v-for="item in navItems" :key="item")
+          VListGroup(v-model="item.active" :prepend-icon="item.icon" v-if="item.subItems && item.subItems.length > 0")
+            template(v-slot:activator="{ props }" v-if="item.show")
+              VListItem(v-bind="props")
+                VListItemTitle {{ item.text }}
+            VListItem(v-for="subItem in item.subItems" :key="subItem.to" :to="subItem.to")
+              VIcon(:icon="subItem.icon" :size="18" class="mx-2")
+              | {{ subItem.text }}
+          VListItem(:to="item.to" v-else)
+            VIcon(:icon="item.icon")
             VListItemTitle {{ item.text }}
-        VListItem(v-for="subItem in item.subItems" :key="subItem.to" :to="subItem.to")
-          VIcon(:icon="subItem.icon" :size="18" class="mx-2")
-          | {{ subItem.text }}
-      VListItem(:to="item.to" v-else)
-        VIcon(:icon="item.icon")
-        VListItemTitle {{ item.text }}
-    VListItem(v-if="user.isLogin" @click="logout")
-      template(#prepend)
-        VIcon(icon="mdi-logout")
-      VListItemTitle 登出
-//- 導覽列
-VAppBar
-  VContainer.d-flex.align-center
-    VBtn(to="/" :active="false" style="width: 100px; height: 100px;")
-      VAppBarTitle(style="font-size: 2rem;")
-        img(src="@/image/icon.png" alt="剪單")
-    VSpacer
-    //- 手機板導覽列
-    template(v-if="isMobile")
-      VAppBarNavIcon(@click="drawer = true")
-    //- 電腦版導覽列
+        VListItem(v-if="user.isLogin" @click="logout")
+          template(#prepend)
+            VIcon(icon="mdi-logout")
+          VListItemTitle 登出
+    //- 導覽列
+    VAppBar
+      VContainer.d-flex.align-center
+        VBtn(to="/" :active="false" style="width: 100px; height: 100px;")
+          VAppBarTitle(style="font-size: 2rem;")
+            img(src="@/image/icon.png" alt="剪單")
+        VSpacer
+        //- 手機板導覽列
+        template(v-if="isMobile")
+          VAppBarNavIcon(@click="drawer = true")
+        //- 電腦版導覽列
 
-    template(v-else)
-      template(v-for="item in navItems", :key="item.to")
-        v-menu(open-on-hover)
-          template(v-slot:activator="{ props }")
-            VBtn(v-bind="props", text,:key="item.to", :to="item.to" v-if="item.show")
-              v-icon(v-if="item.icon") {{ item.icon }}
-              | {{ item.text }}
-              VBadge(color="error" :content="user.cart" v-if="item.to === '/cart'" floating)
-          v-list(v-if="item.subItems && item.subItems.length > 0")
-            v-list-item(v-for="subItem in item.subItems", :key="subItem.to", :to="subItem.to")
-              v-list-item-title
-                VIcon(:icon="subItem.icon" :size="16" class="mx-2")
-                | {{ subItem.text }}
-    VBtn(prepend-icon="mdi-logout" v-if="user.isLogin" @click="logout") 登出
+        template(v-else)
+          template(v-for="item in navItems", :key="item.to")
+            v-menu(open-on-hover)
+              template(v-slot:activator="{ props }")
+                VBtn(v-bind="props", text,:key="item.to", :to="item.to" v-if="item.show")
+                  v-icon(v-if="item.icon") {{ item.icon }}
+                  | {{ item.text }}
+                  VBadge(color="error" :content="user.cart" v-if="item.to === '/cart'" floating)
+              v-list(v-if="item.subItems && item.subItems.length > 0")
+                v-list-item(v-for="subItem in item.subItems", :key="subItem.to", :to="subItem.to")
+                  v-list-item-title
+                    VIcon(:icon="subItem.icon" :size="16" class="mx-2")
+                    | {{ subItem.text }}
+        VBtn(prepend-icon="mdi-logout" v-if="user.isLogin" @click="logout") 登出
 
-//- 頁面內容
-VMain
-  RouterView(:key="$route.path")
+    //- 頁面內容
+    VMain
+      RouterView(:key="$route.path")
 
-v-footer
-  v-row(justify="center", no-gutters)
-    v-btn(v-for="link in links", :key="link", color="white", variant="text", class="mx-2", rounded="xl", :to="link.to") {{ link.name }}
-    v-col.text-center.mt-4(cols="12") {{ new Date().getFullYear() }} — <strong>剪單</strong>
+    v-footer
+      v-row(justify="center", no-gutters)
+        v-btn(v-for="link in links", :key="link", color="white", variant="text", class="mx-2", rounded="xl", :to="link.to") {{ link.name }}
+        v-col.text-center.mt-4(cols="12") {{ new Date().getFullYear() }} — <strong>剪單</strong>
 </template>
 
 <script setup>
 import { useDisplay } from 'vuetify'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useUserStore } from '@/store/user'
 import { useApi } from '@/composables/axios'
 import { useSnackbar } from 'vuetify-use-dialog'
@@ -142,6 +146,14 @@ const links = computed(() => {
   ]
 })
 
+const isLoading = ref(true)
+
+onMounted(() => {
+  setTimeout(() => {
+    isLoading.value = false
+  }, 1000)
+})
+
 </script>
 
 <style scoped>
@@ -170,5 +182,22 @@ const links = computed(() => {
 img {
   width: 70px;
   height: 70px;
+}
+
+.v-progress-circular {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#page {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: #bb9f91;
 }
 </style>

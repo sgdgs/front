@@ -13,6 +13,7 @@ import App from './App.vue'
 // Composables
 import { createApp } from 'vue'
 
+// VCalendar
 import VCalendar from 'v-calendar'
 import 'v-calendar/style.css'
 
