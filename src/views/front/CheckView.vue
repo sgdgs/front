@@ -91,4 +91,8 @@ h1 {
   filter: drop-shadow(2px 2px 10px #422900e7);
   text-align: center;
 }
+
+.v-data-table {
+  background-color: #ffffff63;
+}
 </style>
