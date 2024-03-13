@@ -1,0 +1,1 @@
+import{a0 as t,a6 as a,a7 as n,aj as e,_ as o}from"./index-092f9393.js";const s=e("h1",null,"找不到",-1),c=e("h2",null,"404",-1);function r(l,d){return a(),t(n,null,[s,c],64)}const _={},i=o(_,[["render",r]]);export{i as default};
