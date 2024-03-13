@@ -10,16 +10,17 @@ div(class="loading")
             template(v-slot:activator="{ props }" v-if="item.show")
               VListItem(v-bind="props")
                 VListItemTitle {{ item.text }}
-            VListItem(v-for="subItem in item.subItems" :key="subItem.to" :to="subItem.to")
+            VListItem(v-for="subItem in item.subItems", :key="subItem.to", :to="subItem.to")
               VIcon(:icon="subItem.icon" :size="18" class="mx-2")
               | {{ subItem.text }}
-          VListItem(:to="item.to" v-else)
+          VListItem(:to="item.to" v-if="item.show")
             VIcon(:icon="item.icon")
             VListItemTitle {{ item.text }}
-        VListItem(v-if="user.isLogin" @click="logout")
+        VListItem(v-if="user.isLogin" @click="logout" )
           template(#prepend)
             VIcon(icon="mdi-logout")
           VListItemTitle 登出
+
     //- 導覽列
     VAppBar
       VContainer.d-flex.align-center
