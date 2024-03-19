@@ -1,53 +1,9 @@
-# default
+<h1>剪單髮廊官網<h1>
+  
+![image](https://github.com/sgdgs/front/assets/143071559/3a485af0-1f2f-4a75-b773-2451ecc0659f)
 
-## Project setup
+<h2>網站連結</h2>
+https://sgdgs.github.io/front/#/
 
-```
-# yarn
-yarn
-
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# bun
-bun install
-```
-
-### Compiles and hot-reloads for development
-
-```
-# yarn
-yarn dev
-
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# bun
-bun run dev
-```
-
-### Compiles and minifies for production
-
-```
-# yarn
-yarn build
-
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# bun
-bun run build
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://vitejs.dev/config/).
+<h2>使用技術</h2>
+使用 Bootstrap、jQuery、Vue.js、Node.js 及 MongoDB 進行網頁建置
