@@ -2,7 +2,7 @@
   <v-container>
     <h1>我們的服務</h1>
     <v-row>
-      <v-col :cols="12" md="12">
+      <v-col :cols="12">
         <v-card>
           <div class=" p">
             <v-img src="../../image/洗髮.jpg"></v-img>
@@ -17,6 +17,8 @@
             </v-card-text>
           </div>
         </v-card>
+      </v-col>
+      <v-col :cols="12">
         <v-card>
           <div class=" p">
             <v-img src="../../image/剪髮.jpg"></v-img>
@@ -31,6 +33,8 @@
             </v-card-text>
           </div>
         </v-card>
+      </v-col>
+      <v-col :cols="12">
         <v-card>
           <div class=" p">
             <v-img src="../../image/染髮.jpg"></v-img>
@@ -45,6 +49,8 @@
             </v-card-text>
           </div>
         </v-card>
+      </v-col>
+      <v-col :cols="12">
         <v-card>
           <div class=" p">
             <v-img src="../../image/燙髮.jpg"></v-img>
@@ -59,6 +65,8 @@
             </v-card-text>
           </div>
         </v-card>
+      </v-col>
+      <v-col :cols="12">
         <v-card>
           <div class=" p">
             <v-img src="../../image/護髮.jpg"></v-img>
@@ -83,6 +91,42 @@
 </script>
 
 <style scoped>
+@media (max-width: 768px) {
+  .p {
+    display: none;
+  }
+
+  .p .v-img {
+    display: none;
+  }
+
+  h1 {
+    text-align: start;
+    margin: 10px;
+  }
+
+  .v-card {
+    width: 50%;
+    background: none;
+    box-shadow: none;
+    display: flex;
+    margin-left: 15%;
+    font-family: 'MyCustomFont';
+    filter: drop-shadow(2px 2px 10px #422900e7);
+  }
+
+  .v-card-title {
+    font-size: 30px;
+    font-weight: 500;
+  }
+
+  .v-row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+}
+
 h1 {
   text-align: center;
   margin: 10px;
@@ -101,7 +145,6 @@ h1 {
 .v-card-title {
   font-size: 30px;
   font-weight: 500;
-  margin-top: 10px;
   margin-bottom: 10px;
 }
 
@@ -126,13 +169,14 @@ h1 {
 }
 
 .p {
-  width: 500px;
-  height: 500px;
+  width: 50%;
+  height: 50%;
+  margin-bottom: 10%;
 }
 
 .p .v-img {
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 h1 {
