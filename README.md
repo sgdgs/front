@@ -6,4 +6,4 @@
 https://sgdgs.github.io/front/#/
 
 <h2>使用技術</h2>
-使用 Bootstrap、jQuery、Vue.js、Node.js 及 MongoDB 進行網頁建置
+使用 Bootstrap、Vue.js、Node.js 及 MongoDB 進行網頁建置
